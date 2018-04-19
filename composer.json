@@ -1,0 +1,17 @@
+{
+    "name": "emmajv/assignment1",
+    "description": "Packages needed for assignment 1 in the course \"Molnbaserade webbapplikationer\" at Mau",
+    "type": "project",
+    "require": {
+        "guzzlehttp/guzzle": "^6.3",
+        "monolog/monolog": "^1.23"
+    },
+    "license": "BSD",
+    "authors": [
+        {
+            "name": "Emma Johansson Vikström",
+            "email": "emmakristina95@hotmail.com"
+        }
+    ],
+    "minimum-stability": "stable"
+}
