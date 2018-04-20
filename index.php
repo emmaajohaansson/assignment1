@@ -65,6 +65,7 @@ $dataLength = count($data);
                             if ((!$id == "") && (!$name == "") && (!$details == "")) {
                                 echo "<li> " . $id . ": " . $name . " <button type='button' class='btn btn-info readMore'>Läs mer</button><hr></li>";
                             }
+                        }
                         ?>
                   </ul>
                </div>
