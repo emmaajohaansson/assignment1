@@ -50,19 +50,19 @@ class GetUnicornData
    //Genererar html för listan med alla enhörningar
    public static function generateUnicornList($id, $name) {
        return "<li>$id: $name <a href='unicorn.php?id=$id' class='btn btn-info readMore'>Läs mer</a></li>
-              <hr>";
+               <hr>";
    }
 
    //Genererar html för att visa en specifik enhörning
    public static function generateUnicornView($name, $spottedWhen, $description, $reportedBy, $image) {
        return "<div class='col-xs-6'>
-           <h2>$name</h2>
-            <p>$spottedWhen</p>
-            <p>$description</p>
-            <p>Reported by: $reportedBy</p>
-            </div>
-            <div class='col-xs-6'>
-            <img src='$image'/>
-            </div>";
+                   <h2>$name</h2>
+                   <p>$spottedWhen</p>
+                   <p>$description</p>
+                   <p>Reported by: $reportedBy</p>
+               </div>
+               <div class='col-xs-6'>
+                   <img src='$image'/>
+               </div>";
    }
 }
