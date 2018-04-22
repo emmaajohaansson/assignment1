@@ -1,21 +1,11 @@
 <?php
 require("vendor/autoload.php");
+require("getUnicornData.php");
 
 use GuzzleHttp\Client;
+use App\getUnicornData;
 
-// Skapa en HTTP-client
-$client = new Client();
-
-// Anropa URL: http://unicorns.idioti.se/
-$res = $client->request('GET', 'http://unicorns.idioti.se/', [
-    'headers' => [
-    'Accept' => 'application/json'
-    ]
-]);
-
-// Omvandla JSON-svar till datatyper
-$data = json_decode($res->getBody());
-$dataLength = count($data);
+$unicornData = new getUnicornData();
 ?>
 
 <!DOCTYPEhtml>
@@ -43,21 +33,22 @@ $dataLength = count($data);
            <div class="row">
                <div class="col-xs-6 col-xs-offset-3">
                    <label for="inputId" class="col-xs-12">Id på enhörning</label>
-                   <input type="text" name="inputId">
+                   <input type="text" name="inputId" placeholder="Ange enhörningens id" >
                </div>
            </div>
            <div class="row">
                <div class="col-xs-6 col-xs-offset-3">
                    <button type="button" class="btn btn-success">Visa enhörning</button>
-                   <button type="button" class="btn btn-primary">Visa alla enhörningar</button>
+                   <a href="index.php" class="btn btn-primary">Visa alla enhörningar</a>
                    <hr>
                </div>
            </div>
            <div class="row">
-               <div class="col-xs-6 col-xs-offset-3">
+               <div class="col-xs-6 col-xs-offset-3 section">
                    <h2>Alla enhörningar</h2>
                    <ul>
                         <?php
+                        $data = $unicornData->getUnicorns();
                         foreach ($data as $item) {
                             $id = $item->id;
                             $name = $item->name;
@@ -71,5 +62,6 @@ $dataLength = count($data);
                </div>
            </div>
 		    </div>
-	  </body>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    </body>
 </html>
