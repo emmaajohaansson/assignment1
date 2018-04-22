@@ -7,10 +7,19 @@ button {
   margin-right: 10px;
 }
 
+.unicornButton {
+  margin-top: 10px;
+}
+
 ul {
   list-style-type: none;
 }
 
 .readMore {
   float: right;
+}
+
+img {
+  height: 250px;
+  width: 400px;
 }

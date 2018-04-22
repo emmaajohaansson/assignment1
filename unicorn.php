@@ -6,6 +6,11 @@ use GuzzleHttp\Client;
 use App\getUnicornData;
 
 $unicornData = new getUnicornData();
+
+if (isset($_GET["id"])) {
+  $unicorn = $unicornData->getOneUnicorn($_GET["id"]);
+}
+
 ?>
 
 <!DOCTYPEhtml>
@@ -14,8 +19,7 @@ $unicornData = new getUnicornData();
        <meta charset="utf-8">
 		   <meta name="viewport" content="initial-scale=1, width=device-width">
 		   <title>Enhörningar</title>
-		   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-       integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
        <link rel=stylesheet type=text/css href="style.css">
    </head>
 	 <body>
@@ -24,13 +28,6 @@ $unicornData = new getUnicornData();
                <div class="col-xs-6 col-xs-offset-3">
                    <h1>Enhörningsfantasternas samlingsplats</h1>
                    <hr>
-                   <p>
-                        Gillar du enhörningar? I så fall är detta webbplatsen för dig!
-                        Sök på ett specifikt ID nedan för att hitta en särskild enhörning,
-                        eller klicka dig fram i listan nedan.
-                        Du kan när som helst klicka på "Visa alla enhörningar" för att komma tillbaka till
-                        startsidan igen.
-                   </p>
                </div>
            </div>
            <div class="row">
@@ -49,18 +46,18 @@ $unicornData = new getUnicornData();
            </div>
            <div class="row">
                <div class="col-xs-6 col-xs-offset-3 section">
-                   <h2>Alla enhörningar</h2>
-                   <ul>
-                        <?php
-                        foreach ($unicornData->getUnicorns() as $item) {
-                            $id = $item->id;
-                            $name = $item->name;
-                            if ((!$id == "") && (!$name == "")) {
-                                echo getUnicornData::generateUnicornList($id, $name);
-                            }
-                        }
-                        ?>
-                  </ul>
+                <?php
+                  if($unicorn) {
+                    echo getUnicornData::generateUnicornView($unicorn->name, $unicorn->spottedWhen, $unicorn->description, $unicorn->reportedBy, $unicorn->image);
+                  }
+                  else{
+                    echo "<div class='alert alert-warning' role='alert'>
+                      Du har sökt på ett ID som inte finns!
+                      Testa ett annat ID eller bläddra bland enhörningarna
+                      på startsidan.
+                    </div>";
+                  }
+                ?>
                </div>
            </div>
 		    </div>
